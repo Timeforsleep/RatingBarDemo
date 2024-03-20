@@ -2,20 +2,31 @@ import { RatedStarBean } from '../bean/RatedStarBean'
 import { RatedStar } from './RatedStar'
 
 @Component
+@Entry
 export struct RatingBar {
-  //数组内元素变化不会被监听到
-  starNum: number = 5
-  starFullImageUrl: ResourceStr | string = ''
-  starHalfImageUrl: ResourceStr | string = ''
-  starEmptyImageUrl: ResourceStr | string = ''
+  starNum: number = 0
+  starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
+  starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
+  starEmptyImageUrl: ResourceStr | string = '' /*$r('app.media.empty_star')*/
   starHeight: number = 50
   starWidth: number = 50
-  starsArr: RatedStarBean[] = new Array(this.starNum).fill(new RatedStarBean(this.starEmptyImageUrl, this.starHeight, this.starWidth))
+  starsArr: RatedStarBean[] = []
+
+  aboutToAppear(): void {
+    for (let index = 0; index < this.starNum; index++) {
+      this.starsArr.push(new RatedStarBean(this.starEmptyImageUrl, this.starHeight, this.starWidth/*, this.starFullImageUrl, this.starHalfImageUrl, this.starEmptyImageUrl*/))
+    }
+  }
 
   build() {
     Row() {
       ForEach(this.starsArr, (item: RatedStarBean, index) => {
-        RatedStar({ RatedStarBean: item })
+        RatedStar({
+          ratedStarBean: item,
+          starFullImageUrl: this.starFullImageUrl,
+          starEmptyImageUrl: this.starEmptyImageUrl,
+          starHalfImageUrl: this.starHalfImageUrl
+        })
       })
     }.width('100%').justifyContent(FlexAlign.SpaceBetween)
   }

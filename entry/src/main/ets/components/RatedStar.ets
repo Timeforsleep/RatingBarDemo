@@ -2,14 +2,26 @@ import { RatedStarBean } from '../bean/RatedStarBean'
 
 @Component
 export struct RatedStar {
-  @ObjectLink RatedStarBean: RatedStarBean
+  starFullImageUrl: ResourceStr | string = ''
+  starHalfImageUrl: ResourceStr | string = ''
+  starEmptyImageUrl: ResourceStr | string = ''
 
+  aboutToAppear(): void {
+    console.log(`gyk${this.starFullImageUrl}`);
+  }
+
+  // @Prop starImageUrl:ResourceStr|string
+  // @Prop starWidth:number
+  // @Prop starHeight:number
+  @ObjectLink ratedStarBean: RatedStarBean /*= new RatedStarBean(this.starImageUrl,this.starHeight,this.starWidth)*/
   build() {
     Row() {
-      Image($r('app.media.empty_star')).width(this.RatedStarBean.starWidth).height(this.RatedStarBean.starHeight)
+      Image(this.ratedStarBean.starImageUrl).width(this.ratedStarBean.starWidth).height(this.ratedStarBean.starHeight)
         .gesture(
-          TapGesture().onAction((event:Gesture))
-      )
+          TapGesture().onAction((event: GestureEvent) => {
+            this.ratedStarBean.starImageUrl = this.starFullImageUrl
+          })
+        )
     }
   }
 }

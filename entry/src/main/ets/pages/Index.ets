@@ -14,7 +14,8 @@ struct Index {
           starHalfImageUrl: $r('app.media.half_star'),
           starNum: 5,
           starHeight: 50,
-          starWidth: 50
+          starWidth: 50,
+          LightIndex:0
         }).width('100%')
       }
       .width('100%')

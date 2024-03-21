@@ -16,17 +16,29 @@ struct Index {
     Row() {
       Column() {
         RatingBar({
-          starEmptyImageUrl: $r('app.media.empty_star'),
-          starFullImageUrl: $r('app.media.full_star'),
-          starHalfImageUrl: $r('app.media.half_star'),
+          starEmptyImageUrl: this.starEmptyImageUrl,
+          starFullImageUrl: this.starFullImageUrl,
+          starHalfImageUrl: this.starHalfImageUrl,
           starNum: this.starNum,
-          starHeight: 50,
-          starWidth: 50,
+          starHeight: this.starHeight,
+          starWidth: this.starWidth,
           maxLightIndex: this.maxLightIndex
         }).width('100%')
-        Button('点击设置星为1').onClick(() => {
-          // this.starNum = 1
+        Button('点击设置星数为1').onClick(() => {
+          this.starNum = 1
+        })
+        Button('点击设置分为3.5').onClick(() => {
           this.maxLightIndex = 3.5
+        })
+        Button('点击设置宽高为80').onClick(() => {
+          this.starHeight = 80
+          this.starWidth = 80
+        })
+        Button('复原').onClick(()=>{
+          this.starNum = 5
+          this.starHeight = 50
+          this.starWidth = 50
+          this.maxLightIndex = 0
         })
       }
       .width('100%')

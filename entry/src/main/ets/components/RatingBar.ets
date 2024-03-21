@@ -7,16 +7,16 @@ export struct RatingBar {
   @Prop @Watch('onStarNumChange') starNum: number = 0
   // @State @Watch('onStarChange')LightIndex: number = 0
   /* @Watch('onStarParamsChange') */
-  @Prop starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
+  @Prop @Watch('onStarParamsChange')starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
   /* @Watch('onStarParamsChange') */
-  @Prop starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
+  @Prop @Watch('onStarParamsChange')starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
   /* @Watch('onStarParamsChange') */
-  @Prop starEmptyImageUrl: ResourceStr | string = '' /*$r('app.media.empty_star')*/
+  @Prop @Watch('onStarParamsChange')starEmptyImageUrl: ResourceStr | string = '' /*$r('app.media.empty_star')*/
   /* @Watch('onStarParamsChange') */
-  @Prop starHeight: number = 50
+  @Prop @Watch('onStarParamsChange')starHeight: number = 50
   /* @Watch('onStarParamsChange') */
-  @Prop starWidth: number = 50
-  @State @Watch('onStarParamsChange') maxLightIndex: number = 0
+  @Prop @Watch('onStarParamsChange')starWidth: number = 50
+  @Prop @Watch('onStarParamsChange') maxLightIndex: number = 0
   @State starsArr: RatedStarBean[] = []
 
   // setStar(starNum: number) {
@@ -39,7 +39,7 @@ export struct RatingBar {
   }
 
   onStarParamsChange() {
-    console.log('执行！')
+    console.log(`gyk！${this.maxLightIndex}`)
     for (let index = 0; index < this.starsArr.length; index++) {
       let currentStar = this.starsArr[index]
       currentStar.starHeight = this.starHeight

@@ -3,9 +3,8 @@ import { RatedStar } from './RatedStar'
 
 
 @Component
-@Entry
 export struct RatingBar {
-  starNum: number = 0
+  @State starNum: number = 0
   @State LightIndex: number = 0
   starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
   starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
@@ -13,7 +12,7 @@ export struct RatingBar {
   starHeight: number = 50
   starWidth: number = 50
   @State maxLightIndex: number = 0
-  starsArr: RatedStarBean[] = []
+  @State starsArr: RatedStarBean[] = []
 
   aboutToAppear(): void {
     console.log(`gyk回调`)

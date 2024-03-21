@@ -5,7 +5,7 @@ import { RatingBar } from '../components/RatingBar';
 struct Index {
   @State message: string = 'Hello World';
   @State starNum:number = 5
-  @State maxLightIndex:number = 0
+  @Provide maxLightIndex:number = 0
 
   build() {
     Row() {

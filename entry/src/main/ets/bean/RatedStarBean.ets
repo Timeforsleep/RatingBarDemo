@@ -1,10 +1,10 @@
 @Observed
 export class RatedStarBean {
-  starImageUrl: ResourceStr | string = ''
   starHeight: number = 50
   starWidth: number = 50
   starFullImageUrl: ResourceStr | string = ''
   starHalfImageUrl: ResourceStr | string = ''
+  starImageUrl: ResourceStr | string = ''
   starEmptyImageUrl: ResourceStr | string = ''
   maxLightIndex: number = 0
   currentIndex: number = 0

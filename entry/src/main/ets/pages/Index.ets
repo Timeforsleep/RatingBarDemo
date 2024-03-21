@@ -4,6 +4,7 @@ import { RatingBar } from '../components/RatingBar';
 @Component
 struct Index {
   @State message: string = 'Hello World';
+  @State starNum:number = 5
 
   build() {
     Row() {
@@ -12,11 +13,14 @@ struct Index {
           starEmptyImageUrl: $r('app.media.empty_star'),
           starFullImageUrl: $r('app.media.full_star'),
           starHalfImageUrl: $r('app.media.half_star'),
-          starNum: 5,
+          starNum: this.starNum,
           starHeight: 50,
           starWidth: 50,
           LightIndex:0
         }).width('100%')
+        Button('点击设置星为1').onClick(()=>{
+          this.starNum = 1
+        })
       }
       .width('100%')
     }

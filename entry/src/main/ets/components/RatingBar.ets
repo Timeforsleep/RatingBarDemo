@@ -5,18 +5,18 @@ import { RatedStar } from './RatedStar'
 @Component
 export struct RatingBar {
   @Prop @Watch('onStarChange') starNum: number = 0
-  @State LightIndex: number = 0
-  starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
-  starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
-  starEmptyImageUrl: ResourceStr | string = '' /*$r('app.media.empty_star')*/
-  starHeight: number = 50
-  starWidth: number = 50
-  @State maxLightIndex: number = 0
+  @State @Watch('onStarChange')LightIndex: number = 0
+  @Watch('onStarChange')@Prop starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
+  @Watch('onStarChange')@Prop starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
+  @Watch('onStarChange')@Prop starEmptyImageUrl: ResourceStr | string = '' /*$r('app.media.empty_star')*/
+  @Watch('onStarChange')@Prop starHeight: number = 50
+  @Watch('onStarChange')@Prop starWidth: number = 50
+  @State @Watch('onStarChange') maxLightIndex: number = 0
   @State starsArr: RatedStarBean[] = []
 
-  setStar(starNum: number) {
-    this.starNum = starNum
-  }
+  // setStar(starNum: number) {
+  //   this.starNum = starNum
+  // }
 
   onStarChange() {
     this.starsArr.length = 0

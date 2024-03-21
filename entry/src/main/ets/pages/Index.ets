@@ -5,6 +5,7 @@ import { RatingBar } from '../components/RatingBar';
 struct Index {
   @State message: string = 'Hello World';
   @State starNum:number = 5
+  @State maxLightIndex:number = 0
 
   build() {
     Row() {
@@ -16,10 +17,11 @@ struct Index {
           starNum: this.starNum,
           starHeight: 50,
           starWidth: 50,
-          LightIndex:0
+          maxLightIndex:this.maxLightIndex
         }).width('100%')
         Button('点击设置星为1').onClick(()=>{
-          this.starNum = 1
+          // this.starNum = 1
+          this.maxLightIndex = 5
         })
       }
       .width('100%')

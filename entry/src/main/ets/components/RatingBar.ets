@@ -5,26 +5,15 @@ import { RatedStar } from './RatedStar'
 @Component
 export struct RatingBar {
   @Prop @Watch('onStarNumChange') starNum: number = 0
-  // @State @Watch('onStarChange')LightIndex: number = 0
-  /* @Watch('onStarParamsChange') */
   @Prop @Watch('onStarParamsChange')starFullImageUrl: ResourceStr | string = '' /*$r('app.media.full_star')*/
-  /* @Watch('onStarParamsChange') */
   @Prop @Watch('onStarParamsChange')starHalfImageUrl: ResourceStr | string = '' /*$r('app.media.half_star')*/
-  /* @Watch('onStarParamsChange') */
   @Prop @Watch('onStarParamsChange')starEmptyImageUrl: ResourceStr | string = '' /*$r('app.media.empty_star')*/
-  /* @Watch('onStarParamsChange') */
   @Prop @Watch('onStarParamsChange')starHeight: number = 50
-  /* @Watch('onStarParamsChange') */
   @Prop @Watch('onStarParamsChange')starWidth: number = 50
   @Prop @Watch('onStarParamsChange') maxLightIndex: number = 0
   @State starsArr: RatedStarBean[] = []
 
-  // setStar(starNum: number) {
-  //   this.starNum = starNum
-  // }
-
   onStarNumChange() {
-
     this.starsArr.length = 0
     for (let index = 0; index < this.starNum; index++) {
       this.starsArr.push(new RatedStarBean(this.starEmptyImageUrl,
@@ -39,7 +28,7 @@ export struct RatingBar {
   }
 
   onStarParamsChange() {
-    console.log(`gyk！${this.maxLightIndex}`)
+    this.onStarNumChange()
     for (let index = 0; index < this.starsArr.length; index++) {
       let currentStar = this.starsArr[index]
       currentStar.starHeight = this.starHeight
@@ -58,17 +47,8 @@ export struct RatingBar {
   build() {
     Row() {
       ForEach(this.starsArr, (item: RatedStarBean, index) => {
-        // if (this.maxLightIndex > this.index && this.maxLightIndex - this.index == 0.5)
-        // if (item.maxLightIndex > index && item.maxLightIndex - index == 0.5) {
-        //   item.starImageUrl = item.starHalfImageUrl
-        // }
         RatedStar({
           ratedStarBean: item
-          // index: index,
-          // maxLightIndex: $maxLightIndex,
-          // starFullImageUrl: this.starFullImageUrl,
-          // starHalfImageUrl: this.starHalfImageUrl,
-          // starEmptyImageUrl: this.starEmptyImageUrl
         }).onClick((event: ClickEvent) => {
           let tapMessage = event
           if (tapMessage != null && tapMessage.x < item.starWidth / 2) {
@@ -77,7 +57,6 @@ export struct RatingBar {
             item.maxLightIndex = item.currentIndex + 1
           }
           this.maxLightIndex = item.maxLightIndex
-          // item.maxLightIndex = Math.max(item.currentIndex,this.maxLightIndex)
         })
       })
     }.width('100%').justifyContent(FlexAlign.SpaceBetween)

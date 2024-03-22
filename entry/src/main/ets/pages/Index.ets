@@ -27,6 +27,9 @@ struct Index {
         Button('点击设置星数为1').onClick(() => {
           this.starNum = 1
         })
+        Button('点击设置星数为8').onClick(() => {
+          this.starNum = 8
+        })
         Button('点击设置分为3.5').onClick(() => {
           this.maxLightIndex = 3.5
         })
@@ -34,6 +37,7 @@ struct Index {
           this.starHeight = 80
           this.starWidth = 80
         })
+        Button('点击设置图片')
         Button('复原').onClick(()=>{
           this.starNum = 5
           this.starHeight = 50
@@ -43,6 +47,6 @@ struct Index {
       }
       .width('100%')
     }
-    .height('100%').backgroundColor(Color.Black)
+    .height('100%')
   }
 }
